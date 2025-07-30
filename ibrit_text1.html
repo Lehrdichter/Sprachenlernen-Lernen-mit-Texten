@@ -2,12 +2,12 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Vokabelkarten Ibrit–Deutsch</title>
+  <title>Vokabeltrainer Ibrit–Deutsch</title>
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
-      background-color: #f7f7f7;
+      background-color: #f0f0f0;
       padding: 40px;
     }
     .card {
@@ -19,56 +19,98 @@
       margin: 0 auto 20px;
     }
     button {
-      margin: 10px;
+      margin: 8px;
       padding: 10px 20px;
       font-size: 16px;
       cursor: pointer;
+    }
+    #statistik {
+      margin-top: 30px;
+      font-size: 18px;
+      color: #333;
     }
   </style>
 </head>
 <body>
 
-  <h1>Vokabelkarten Ibrit–Deutsch</h1>
+  <h1>Vokabeltrainer Ibrit–Deutsch</h1>
 
   <div class="card">
-    <p id="frage">Klicke auf "Nächste Karte"</p>
+    <p id="frage">Klicke auf „Start“</p>
     <p id="antwort" style="display:none; font-weight: bold; margin-top: 20px;"></p>
   </div>
 
-  <button onclick="zeigeAntwort()">Antwort anzeigen</button>
-  <button onclick="naechsteKarte()">Nächste Karte</button>
-  <br><br>
-  <label>
-    <input type="checkbox" id="richtung" onchange="wechselRichtung()"> Deutsch → Ibrit anzeigen
-  </label>
+  <div id="steuerung">
+    <button onclick="zeigeAntwort()">Antwort anzeigen</button>
+    <button onclick="wussteIch(true)">✔️ Gewusst</button>
+    <button onclick="wussteIch(false)">❌ Nicht gewusst</button>
+    <br><br>
+    <label>
+      <input type="checkbox" id="richtung" onchange="wechselRichtung()"> Deutsch → Ibrit
+    </label>
+    <br><br>
+    <button onclick="start()">🔁 Training neu starten</button>
+  </div>
+
+  <div id="statistik"></div>
 
   <script>
-    const vokabeln = [
+    const vokabelnOriginal = [
       { ibrit: "dalmun", deutsch: "Baum" },
       { ibrit: "kareth", deutsch: "Wasser" },
       { ibrit: "sibel", deutsch: "Sonne" },
       { ibrit: "farnok", deutsch: "Haus" },
       { ibrit: "eshil", deutsch: "Buch" }
-      // Füge hier bis zu 50 Vokabeln hinzu
+      // Füge hier weitere Vokabeln hinzu
     ];
 
-    let aktuelleKarte = 0;
+    let vokabeln = [];
+    let falschGelernt = [];
+    let aktuelleKarte = null;
     let richtung = "ibrit-deutsch";
+    let richtig = 0;
+    let falsch = 0;
+
+    function start() {
+      vokabeln = [...vokabelnOriginal]; // Kopie
+      falschGelernt = [];
+      richtig = 0;
+      falsch = 0;
+      document.getElementById("statistik").innerText = "";
+      naechsteKarte();
+    }
+
+    function wechselRichtung() {
+      richtung = document.getElementById("richtung").checked ? "deutsch-ibrit" : "ibrit-deutsch";
+      start();
+    }
 
     function naechsteKarte() {
-      const frage = document.getElementById("frage");
-      const antwort = document.getElementById("antwort");
-      antwort.style.display = "none";
+      document.getElementById("antwort").style.display = "none";
+      if (vokabeln.length === 0) {
+        if (falschGelernt.length > 0) {
+          vokabeln = [...falschGelernt];
+          falschGelernt = [];
+          alert("Jetzt werden die nicht gewussten Vokabeln wiederholt!");
+          naechsteKarte();
+        } else {
+          document.getElementById("frage").innerText = "Training beendet!";
+          document.getElementById("antwort").innerText = "";
+          document.getElementById("statistik").innerText =
+            `✔️ Richtig: ${richtig} ❌ Falsch: ${falsch}`;
+          return;
+        }
+      }
 
-      aktuelleKarte = Math.floor(Math.random() * vokabeln.length);
+      const index = Math.floor(Math.random() * vokabeln.length);
+      aktuelleKarte = vokabeln.splice(index, 1)[0];
 
-      const karte = vokabeln[aktuelleKarte];
       if (richtung === "ibrit-deutsch") {
-        frage.innerText = karte.ibrit;
-        antwort.innerText = karte.deutsch;
+        document.getElementById("frage").innerText = aktuelleKarte.ibrit;
+        document.getElementById("antwort").innerText = aktuelleKarte.deutsch;
       } else {
-        frage.innerText = karte.deutsch;
-        antwort.innerText = karte.ibrit;
+        document.getElementById("frage").innerText = aktuelleKarte.deutsch;
+        document.getElementById("antwort").innerText = aktuelleKarte.ibrit;
       }
     }
 
@@ -76,10 +118,18 @@
       document.getElementById("antwort").style.display = "block";
     }
 
-    function wechselRichtung() {
-      richtung = document.getElementById("richtung").checked ? "deutsch-ibrit" : "ibrit-deutsch";
+    function wussteIch(gewusst) {
+      if (gewusst) {
+        richtig++;
+      } else {
+        falsch++;
+        falschGelernt.push(aktuelleKarte);
+      }
       naechsteKarte();
     }
+
+    // Autostart
+    start();
   </script>
 
 </body>
