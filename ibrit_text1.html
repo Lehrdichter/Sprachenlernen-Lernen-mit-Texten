@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Vokabelkarten Ibrit–Deutsch</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #f7f7f7;
+      padding: 40px;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      padding: 30px;
+      max-width: 400px;
+      margin: 0 auto 20px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Vokabelkarten Ibrit–Deutsch</h1>
+
+  <div class="card">
+    <p id="frage">Klicke auf "Nächste Karte"</p>
+    <p id="antwort" style="display:none; font-weight: bold; margin-top: 20px;"></p>
+  </div>
+
+  <button onclick="zeigeAntwort()">Antwort anzeigen</button>
+  <button onclick="naechsteKarte()">Nächste Karte</button>
+  <br><br>
+  <label>
+    <input type="checkbox" id="richtung" onchange="wechselRichtung()"> Deutsch → Ibrit anzeigen
+  </label>
+
+  <script>
+    const vokabeln = [
+      { ibrit: "dalmun", deutsch: "Baum" },
+      { ibrit: "kareth", deutsch: "Wasser" },
+      { ibrit: "sibel", deutsch: "Sonne" },
+      { ibrit: "farnok", deutsch: "Haus" },
+      { ibrit: "eshil", deutsch: "Buch" }
+      // Füge hier bis zu 50 Vokabeln hinzu
+    ];
+
+    let aktuelleKarte = 0;
+    let richtung = "ibrit-deutsch";
+
+    function naechsteKarte() {
+      const frage = document.getElementById("frage");
+      const antwort = document.getElementById("antwort");
+      antwort.style.display = "none";
+
+      aktuelleKarte = Math.floor(Math.random() * vokabeln.length);
+
+      const karte = vokabeln[aktuelleKarte];
+      if (richtung === "ibrit-deutsch") {
+        frage.innerText = karte.ibrit;
+        antwort.innerText = karte.deutsch;
+      } else {
+        frage.innerText = karte.deutsch;
+        antwort.innerText = karte.ibrit;
+      }
+    }
+
+    function zeigeAntwort() {
+      document.getElementById("antwort").style.display = "block";
+    }
+
+    function wechselRichtung() {
+      richtung = document.getElementById("richtung").checked ? "deutsch-ibrit" : "ibrit-deutsch";
+      naechsteKarte();
+    }
+  </script>
+
+</body>
+</html>
