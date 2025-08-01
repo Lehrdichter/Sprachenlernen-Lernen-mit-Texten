@@ -55,62 +55,63 @@
   <div id="statistik"></div>
 
   <script>
-    const vokabelnOriginal = [
-      { ibrit: "יפה jafeh", deutsch: "hübsch" },
-      { ibrit: "יפה jafah", deutsch: "hübsche" },
-      { ibrit: "מלא male", deutsch: "voll" },
-      { ibrit: "ממולא memula", deutsch: "gefüllt" },
-       { ibrit: "עוֹלָם olam", deutsch: "Welt" }
-    { ibrit: "עוגה uga", deutsch: "Kuchen" }
-    { ibrit: "עיר ir", deutsch: "Stadt" }
-    { ibrit: "עד ad", deutsch: "bis" }
-    { ibrit: "עץ ez", deutsch: "Baum" }
-    { ibrit: "דוקטור ", deutsch: "Doktor" }
-    { ibrit: "Optimist ", deutsch: "Optimist" }
-    { ibrit: "Transistor ", deutsch: "Transistor" }
-    { ibrit: "Salat ", deutsch: "Salat" }
-    { ibrit: "קוקה קולה ", deutsch: "Coca Cola " }
-    { ibrit: "קפה  ", deutsch: "Kaffee" }
-    { ibrit: "שוקולד ", deutsch: "Schokolade" }
-    { ibrit: "קונצרט  ", deutsch: "Konzert" }
-    { ibrit: "רכבת – Rakevet", deutsch: "Zug" }
-    { ibrit: "כתב – Ktav ", deutsch: "Schrift, für „Schrift“ im Sinne von Schriftart oder Handschrift"}
-    { ibrit: "קצר – Katzar", deutsch: "kurz " }
-    { ibrit: "צדק – Tzedek", deutsch: "Gerechtigkeit" }
-    { ibrit: "קטן – Katan", deutsch: "klein " }
-    { ibrit: "טקס – Tekes", deutsch: "Zeremonie" }
-    { ibrit: "הצטננות – Hitztanenut", deutsch: "Erkältung" }
-    { ibrit: "קצת – Ktzat", deutsch: "ein wenig" }
-    { ibrit: "דגל – Degel", deutsch: "Flagge" }
-    { ibrit: "מרפסת – Mirpeset", deutsch: "Balkon" }
-    { ibrit: "מלח – Melach", deutsch: "Salz" }
-    { ibrit: "סלע – Sela", deutsch: "Felsen" }
-    { ibrit: "נעל – Na'al", deutsch: "Schuh" }
-    { ibrit: "שפעת – Shapa'at", deutsch: "Grippe" }
-    { ibrit: "ספר – Sefer", deutsch: "Buch" }
-    { ibrit: "בוקר – Boker", deutsch: "Morgen, Tagesbeginn" }
-    { ibrit: "משכורת – Maskoret", deutsch: "Gehalt" }
-    { ibrit: "נוער – No'ar", deutsch: "Jugend" }
-    { ibrit: "בית – Bayit", deutsch: "Haus" }
-    { ibrit: "שמים – Shamayim", deutsch: "Himmel" }
-    { ibrit: "מספר – Mispar", deutsch: "Nummer" }
-    { ibrit: "רחוב – Rechov", deutsch: "Straße" }
-    { ibrit: "שיעור – Shiur", deutsch: "Lektion" }
-    { ibrit: "פתרון – Pitaron", deutsch: "Lösung" }
-    { ibrit: "גם – Gam", deutsch: "auch" }
-    { ibrit: "כן – Ken", deutsch: "ja / doch" }
-    { ibrit: "לא – Lo", deutsch: "nein/nicht" }
-    { ibrit: "מאיפה – Me'eyfo/ מאין – Me'ayin", deutsch: "woher" }
-    { ibrit: "תרגיל – Targil", deutsch: "Übung" }
-    { ibrit: "שיחה – Sicha", deutsch: "Gespräch" }
-    { ibrit: "מי – Mi", deutsch: "wer" }
-    { ibrit: "אני – Ani", deutsch: "ich" }
-    { ibrit: "אתה – Ata", deutsch: "du männlich" }
-    { ibrit: "את – At", deutsch: "du weiblich" }
-    { ibrit: "הוא – Hu", deutsch: "er" }
-    { ibrit: "היא – Hi", deutsch: "sie" }
-    { ibrit: "ו – Ve", deutsch: "und" }
-    { ibrit: "מ – Mi", deutsch: "aus" }
+const vokabelnOriginal = [
+  { ibrit: "יפה jafeh", deutsch: "hübsch" },
+  { ibrit: "יפה jafah", deutsch: "hübsche" },
+  { ibrit: "מלא male", deutsch: "voll" },
+  { ibrit: "ממולא memula", deutsch: "gefüllt" },
+  { ibrit: "עוֹלָם olam", deutsch: "Welt" },
+  { ibrit: "עוגה uga", deutsch: "Kuchen" },
+  { ibrit: "עיר ir", deutsch: "Stadt" },
+  { ibrit: "עד ad", deutsch: "bis" },
+  { ibrit: "עץ ez", deutsch: "Baum" },
+  { ibrit: "דוקטור", deutsch: "Doktor" },
+  { ibrit: "Optimist", deutsch: "Optimist" },
+  { ibrit: "Transistor", deutsch: "Transistor" },
+  { ibrit: "Salat", deutsch: "Salat" },
+  { ibrit: "קוקה קולה", deutsch: "Coca Cola" },
+  { ibrit: "קפה", deutsch: "Kaffee" },
+  { ibrit: "שוקולד", deutsch: "Schokolade" },
+  { ibrit: "קונצרט", deutsch: "Konzert" },
+  { ibrit: "רכבת – Rakevet", deutsch: "Zug" },
+  { ibrit: "כתב – Ktav", deutsch: "Schrift, für „Schrift“ im Sinne von Schriftart oder Handschrift" },
+  { ibrit: "קצר – Katzar", deutsch: "kurz" },
+  { ibrit: "צדק – Tzedek", deutsch: "Gerechtigkeit" },
+  { ibrit: "קטן – Katan", deutsch: "klein" },
+  { ibrit: "טקס – Tekes", deutsch: "Zeremonie" },
+  { ibrit: "הצטננות – Hitztanenut", deutsch: "Erkältung" },
+  { ibrit: "קצת – Ktzat", deutsch: "ein wenig" },
+  { ibrit: "דגל – Degel", deutsch: "Flagge" },
+  { ibrit: "מרפסת – Mirpeset", deutsch: "Balkon" },
+  { ibrit: "מלח – Melach", deutsch: "Salz" },
+  { ibrit: "סלע – Sela", deutsch: "Felsen" },
+  { ibrit: "נעל – Na'al", deutsch: "Schuh" },
+  { ibrit: "שפעת – Shapa'at", deutsch: "Grippe" },
+  { ibrit: "ספר – Sefer", deutsch: "Buch" },
+  { ibrit: "בוקר – Boker", deutsch: "Morgen, Tagesbeginn" },
+  { ibrit: "משכורת – Maskoret", deutsch: "Gehalt" },
+  { ibrit: "נוער – No'ar", deutsch: "Jugend" },
+  { ibrit: "בית – Bayit", deutsch: "Haus" },
+  { ibrit: "שמים – Shamayim", deutsch: "Himmel" },
+  { ibrit: "מספר – Mispar", deutsch: "Nummer" },
+  { ibrit: "רחוב – Rechov", deutsch: "Straße" },
+  { ibrit: "שיעור – Shiur", deutsch: "Lektion" },
+  { ibrit: "פתרון – Pitaron", deutsch: "Lösung" },
+  { ibrit: "גם – Gam", deutsch: "auch" },
+  { ibrit: "כן – Ken", deutsch: "ja / doch" },
+  { ibrit: "לא – Lo", deutsch: "nein / nicht" },
+  { ibrit: "מאיפה – Me'eyfo / מאין – Me'ayin", deutsch: "woher" },
+  { ibrit: "תרגיל – Targil", deutsch: "Übung" },
+  { ibrit: "שיחה – Sicha", deutsch: "Gespräch" },
+  { ibrit: "מי – Mi", deutsch: "wer" },
+  { ibrit: "אני – Ani", deutsch: "ich" },
+  { ibrit: "אתה – Ata", deutsch: "du (männlich)" },
+  { ibrit: "את – At", deutsch: "du (weiblich)" },
+  { ibrit: "הוא – Hu", deutsch: "er" },
+  { ibrit: "היא – Hi", deutsch: "sie" },
+  { ibrit: "ו – Ve", deutsch: "und" },
+  { ibrit: "מ – Mi", deutsch: "aus" }
+];
 
     
       // Füge hier weitere Vokabeln hinzu
